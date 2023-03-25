@@ -82,30 +82,30 @@ class CautionReceiverController extends GetxController
     // _loading(false);
   }
 
-  Future<void> getHistoryCautions() async {
-    cautionList.clear();
-    // _loading(true);
-    var splashController = Get.find<SplashController>();
-    UserProfileModel receiverUserProfile =
-        splashController.userModel!.userProfile!;
-    QueryBuilder<ParseObject> query =
-        QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
-    query.includeObject([
-      'deliveryUserProfile',
-      'receiverUserProfile',
-      'givebackUserProfile',
-      'item'
-    ]);
-    query.whereEqualTo(
-        'receiverUserProfile',
-        (ParseObject(UserProfileEntity.className)
-              ..objectId = receiverUserProfile.id)
-            .toPointer());
-    // query.whereEqualTo('receiverIsStartGiveback', true);
-    List<CautionModel> temp = await _cautionRepository.list(query, null);
-    cautionList.addAll(temp);
-    // _loading(false);
-  }
+  // Future<void> getHistoryCautions() async {
+  //   cautionList.clear();
+  //   // _loading(true);
+  //   var splashController = Get.find<SplashController>();
+  //   UserProfileModel receiverUserProfile =
+  //       splashController.userModel!.userProfile!;
+  //   QueryBuilder<ParseObject> query =
+  //       QueryBuilder<ParseObject>(ParseObject(CautionEntity.className));
+  //   query.includeObject([
+  //     'deliveryUserProfile',
+  //     'receiverUserProfile',
+  //     'givebackUserProfile',
+  //     'item'
+  //   ]);
+  //   query.whereEqualTo(
+  //       'receiverUserProfile',
+  //       (ParseObject(UserProfileEntity.className)
+  //             ..objectId = receiverUserProfile.id)
+  //           .toPointer());
+  //   // query.whereEqualTo('receiverIsStartGiveback', true);
+  //   List<CautionModel> temp = await _cautionRepository.list(query, null);
+  //   cautionList.addAll(temp);
+  //   // _loading(false);
+  // }
 
   Future<void> updatereceiverIsAnalyzingItemWithRefused(
       CautionModel cautionModel) async {
